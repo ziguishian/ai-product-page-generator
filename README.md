@@ -73,9 +73,9 @@ Banana Mall 是一个 AI 原生的电商内容工作台，可以将商品图片�
 </div>
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-  <img width="1024" height="1024" alt="03-____________" src="https://github.com/user-attachments/assets/80e4990e-cc0a-48ef-a668-655a94bf1ecb" style="width: 32%;">
-  <img width="1024" height="1024" alt="02-___________" src="https://github.com/user-attachments/assets/8bb54d4d-c79d-418a-b1f8-d1b361af2a57" style="width: 32%;">
-  <img width="1024" height="1024" alt="01-____________" src="https://github.com/user-attachments/assets/b6f5ec0d-ebf7-45ce-b121-d155baee0af0" style="width: 32%;">
+  <img width="1024" height="1024" alt="03-____________" src="https://github.com/user-attachments/assets/80e4990e-cc0a-48ef-a668-655a94bf1ecb" style="width: 33%;">
+  <img width="1024" height="1024" alt="02-___________" src="https://github.com/user-attachments/assets/8bb54d4d-c79d-418a-b1f8-d1b361af2a57" style="width: 33%;">
+  <img width="1024" height="1024" alt="01-____________" src="https://github.com/user-attachments/assets/b6f5ec0d-ebf7-45ce-b121-d155baee0af0" style="width: 33%;">
 </div>
 
 
@@ -91,15 +91,15 @@ Banana Mall 是一个 AI 原生的电商内容工作台，可以将商品图片�
 ### NanoBanana
 
 <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
-  <img width="1526" height="1856" alt="screenshot-20260113-153933" src="https://github.com/user-attachments/assets/b0a60e74-cdae-43b7-aa18-ee618bf9c003" style="width: 32%;">
-  <img width="1442" height="1770" alt="screenshot-20260113-153944" src="https://github.com/user-attachments/assets/3ae42734-2735-4833-b379-fa43aa7c6b96" style="width: 32%;">
-  <img width="1431" height="1847" alt="screenshot-20260113-153957" src="https://github.com/user-attachments/assets/b8078faa-aac2-466a-b9eb-dbbb1246d14b" style="width: 32%;">
+  <img width="1526" height="1856" alt="screenshot-20260113-153933" src="https://github.com/user-attachments/assets/b0a60e74-cdae-43b7-aa18-ee618bf9c003" style="width: 33%;">
+  <img width="1442" height="1770" alt="screenshot-20260113-153944" src="https://github.com/user-attachments/assets/3ae42734-2735-4833-b379-fa43aa7c6b96" style="width: 33%;">
+  <img width="1431" height="1847" alt="screenshot-20260113-153957" src="https://github.com/user-attachments/assets/b8078faa-aac2-466a-b9eb-dbbb1246d14b" style="width: 33%;">
 </div>
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-  <img width="1024" height="1024" alt="shamo001" src="https://github.com/user-attachments/assets/3a134152-2add-4742-9121-f381fe42a162" style="width: 32%;"/>
-  <img width="1024" height="1024" alt="shamo003" src="https://github.com/user-attachments/assets/61335eed-315b-402b-90e3-95b051bd2480" style="width: 32%;"/>
-  <img width="1024" height="1024" alt="shamo002" src="https://github.com/user-attachments/assets/ed86d249-e335-4206-bbe2-9a767e006cec" style="width: 32%;"/>
+  <img width="1024" height="1024" alt="shamo001" src="https://github.com/user-attachments/assets/3a134152-2add-4742-9121-f381fe42a162" style="width: 33%;"/>
+  <img width="1024" height="1024" alt="shamo003" src="https://github.com/user-attachments/assets/61335eed-315b-402b-90e3-95b051bd2480" style="width: 33%;"/>
+  <img width="1024" height="1024" alt="shamo002" src="https://github.com/user-attachments/assets/ed86d249-e335-4206-bbe2-9a767e006cec" style="width: 33%;"/>
 </div>
 
 
