@@ -91,6 +91,8 @@ DATABASE_URL=
 
 Supports any OpenAI-compatible API.  
 支持任意 OpenAI-compatible API（包括代理或自建服务）。
+你可以不在此处配置，直接在项目页面右上角的设置中设置即可。
+<img width="3840" height="2029" alt="image" src="https://github.com/user-attachments/assets/c1068c54-073f-4438-b279-261cf646bc3f" />
 
 ---
 
