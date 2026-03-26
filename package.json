@@ -1,0 +1,94 @@
+{
+  "name": "banana-mall",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI e-commerce detail page generation and editing workspace",
+  "author": "MatrixInspire Inc",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "dev": "node ./scripts/run-next-safe.cjs dev",
+    "build": "node ./scripts/run-next-safe.cjs build",
+    "start": "node ./scripts/run-next-safe.cjs start",
+    "desktop:start": "node ./scripts/build-desktop.cjs start",
+    "build:desktop": "node ./scripts/build-desktop.cjs prepare",
+    "dist:win": "node ./scripts/build-desktop.cjs dist:win",
+    "lint": "node -e \"console.log('Linting is not configured for this Windows path-safe build.')\"",
+    "prisma:generate": "node ./scripts/run-prisma-safe.cjs generate",
+    "prisma:migrate": "node ./scripts/apply-prisma-migrations.cjs",
+    "prisma:deploy": "node ./scripts/apply-prisma-migrations.cjs"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@prisma/client": "^6.19.2",
+    "@radix-ui/react-alert-dialog": "^1.1.14",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-toast": "^1.2.14",
+    "archiver": "^7.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.511.0",
+    "nanoid": "^5.1.5",
+    "next": "^14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-hook-form": "^7.65.0",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.3.0",
+    "zod": "^4.1.11",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/archiver": "^7.0.0",
+    "@types/node": "^20.17.30",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "autoprefixer": "^10.4.21",
+    "electron": "^35.2.2",
+    "electron-builder": "^26.0.12",
+    "postcss": "^8.4.49",
+    "prisma": "^6.19.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3"
+  },
+  "build": {
+    "appId": "com.matrixinspire.bananamall",
+    "productName": "banana-mall",
+    "asar": false,
+    "directories": {
+      "output": "dist-desktop"
+    },
+    "files": [
+      "desktop/**/*",
+      ".next/standalone/**/*",
+      "scripts/runtime-paths.cjs",
+      "package.json"
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "banana-mall-setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}

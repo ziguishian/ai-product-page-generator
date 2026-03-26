@@ -1,0 +1,205 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum ProjectStatus {
+  DRAFT
+  ANALYZED
+  PLANNED
+  EDITING
+  COMPLETED
+}
+
+enum AssetType {
+  MAIN
+  ANGLE
+  DETAIL
+  REFERENCE
+  GENERATED
+  EXPORTED
+}
+
+enum SectionType {
+  HERO
+  SELLING_POINTS
+  SCENARIO
+  DETAIL_CLOSEUP
+  SPECS
+  MATERIAL
+  COMPARISON
+  GIFT_SCENE
+  BRAND_TRUST
+  SUMMARY
+  CUSTOM
+}
+
+enum GenerationStatus {
+  IDLE
+  QUEUED
+  GENERATING
+  SUCCESS
+  FAILED
+}
+
+enum TaskType {
+  ANALYZE
+  PLAN
+  GENERATE
+  REGENERATE
+  EXPORT
+}
+
+enum TaskStatus {
+  PENDING
+  RUNNING
+  SUCCESS
+  FAILED
+}
+
+model Project {
+  id            String           @id @default(cuid())
+  name          String
+  status        ProjectStatus    @default(DRAFT)
+  platform      String
+  style         String
+  description   String?
+  modelSnapshot Json?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  assets        ProductAsset[]
+  analysis      ProductAnalysis?
+  sections      PageSection[]
+  tasks         GenerationTask[]
+}
+
+model ProviderConfig {
+  id              String         @id @default(cuid())
+  name            String
+  baseUrl         String
+  apiKeyEncrypted String
+  isActive        Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  models          ModelProfile[]
+}
+
+model ModelProfile {
+  id                   String         @id @default(cuid())
+  providerConfigId     String
+  providerConfig       ProviderConfig @relation(fields: [providerConfigId], references: [id], onDelete: Cascade)
+  modelId              String
+  label                String
+  capabilities         Json
+  roles                Json
+  quality              String?
+  latency              String?
+  cost                 String?
+  isAvailable          Boolean        @default(true)
+  isDefaultAnalysis    Boolean        @default(false)
+  isDefaultPlanning    Boolean        @default(false)
+  isDefaultHeroImage   Boolean        @default(false)
+  isDefaultDetailImage Boolean        @default(false)
+  isDefaultImageEdit   Boolean        @default(false)
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  @@unique([providerConfigId, modelId])
+  @@index([providerConfigId])
+}
+
+model ProductAsset {
+  id                String         @id @default(cuid())
+  projectId         String
+  project           Project        @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sectionId         String?
+  section           PageSection?   @relation("SectionGeneratedAssets", fields: [sectionId], references: [id], onDelete: SetNull)
+  type              AssetType
+  filePath          String
+  fileName          String
+  mimeType          String?
+  sortOrder         Int            @default(0)
+  metadata          Json?
+  isMain            Boolean        @default(false)
+  createdAt         DateTime       @default(now())
+  currentForSection PageSection[]  @relation("CurrentSectionImage")
+  versions          SectionVersion[]
+
+  @@index([projectId, sortOrder])
+  @@index([sectionId])
+}
+
+model ProductAnalysis {
+  id               String   @id @default(cuid())
+  projectId        String   @unique
+  project          Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  rawResult        Json
+  normalizedResult Json
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model PageSection {
+  id                  String           @id @default(cuid())
+  projectId           String
+  project             Project          @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sectionKey          String
+  type                SectionType
+  title               String
+  goal                String
+  copy                String
+  visualPrompt        String
+  order               Int
+  status              GenerationStatus @default(IDLE)
+  currentImageAssetId String?
+  currentImageAsset   ProductAsset?    @relation("CurrentSectionImage", fields: [currentImageAssetId], references: [id], onDelete: SetNull)
+  editableData        Json?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+  versions            SectionVersion[]
+  generatedAssets     ProductAsset[]   @relation("SectionGeneratedAssets")
+  tasks               GenerationTask[]
+
+  @@unique([projectId, sectionKey])
+  @@index([projectId, order])
+}
+
+model SectionVersion {
+  id             String       @id @default(cuid())
+  sectionId      String
+  section        PageSection  @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  versionNumber  Int
+  promptSnapshot Json
+  copySnapshot   Json
+  imageAssetId   String?
+  imageAsset     ProductAsset? @relation(fields: [imageAssetId], references: [id], onDelete: SetNull)
+  isActive       Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+
+  @@unique([sectionId, versionNumber])
+  @@index([sectionId, createdAt])
+}
+
+model GenerationTask {
+  id           String      @id @default(cuid())
+  projectId    String
+  project      Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  sectionId    String?
+  section      PageSection? @relation(fields: [sectionId], references: [id], onDelete: SetNull)
+  taskType     TaskType
+  status       TaskStatus  @default(PENDING)
+  inputPayload Json?
+  outputPayload Json?
+  errorMessage String?
+  startedAt    DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([projectId, createdAt])
+  @@index([sectionId, createdAt])
+}
