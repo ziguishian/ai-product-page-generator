@@ -220,6 +220,23 @@ PRs are welcome.
 If you like this project, give it a star ⭐  
 如果你觉得这个项目不错，欢迎点个 Star ⭐
 
+## Star History
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://api.star-history.com/svg?repos=ziguishian/banana-mall&type=Date&theme=dark"
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://api.star-history.com/svg?repos=ziguishian/banana-mall&type=Date"
+  />
+  <img
+    alt="Star History Chart"
+    src="https://api.star-history.com/svg?repos=ziguishian/banana-mall&type=Date"
+  />
+</picture>
+
 
 <div align="center">
 
