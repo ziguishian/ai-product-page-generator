@@ -7,7 +7,7 @@
   "main": "desktop/main.cjs",
   "scripts": {
     "dev": "node ./scripts/run-next-safe.cjs dev",
-    "build": "node ./scripts/run-next-safe.cjs build",
+    "build": "npm run prisma:generate && node ./scripts/run-next-safe.cjs build",
     "start": "node ./scripts/run-next-safe.cjs start",
     "desktop:start": "node ./scripts/build-desktop.cjs start",
     "build:desktop": "node ./scripts/build-desktop.cjs prepare",
@@ -73,6 +73,7 @@
     "win": {
       "signAndEditExecutable": false,
       "verifyUpdateCodeSignature": false,
+      "icon": "build/icon.ico",
       "target": [
         {
           "target": "nsis",
@@ -88,7 +89,10 @@
       "perMachine": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
+      "createStartMenuShortcut": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico"
     }
   }
 }
